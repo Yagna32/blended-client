@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './ProductDisplay.css'
 import star_icon from '../Assets/star_icon.png'
 import star_dull_icon from '../Assets/star_dull_icon.png'
@@ -12,9 +12,10 @@ const ProductDisplay = (props) => {
     const {products,newCollection,popularProducts} = useContext(ShopProductsContext)
     console.log(productid + " id product choosed")
     const product = products.find((e)=>e.id===Number(productid)) || newCollection.find((e)=>e.id===Number(productid)) || popularProducts.find((e)=>e.id===Number(productid))
-    console.log(product)
     const [mainImage,setMainImage] = useState(product.image[0])
-
+    useEffect(()=>{
+        setMainImage(product.image[0])
+    },[product])
     function changeImageHandler(e) {
         setMainImage(e.target.src);
     }
