@@ -24,12 +24,15 @@
     display: flex;
     list-style: none;
     gap: 50px;
+}
+.footer-links li a{
+    cursor: pointer;
     color: #252525;
     font-size: 20px;
+    text-decoration:  none;
 }
-
-.footer-links li{
-    cursor: pointer;
+.footer-links li a:hover{
+    text-decoration: underline;
 }
 
 .footer-socials-icon{

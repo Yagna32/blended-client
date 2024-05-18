@@ -116,7 +116,31 @@ const ShopContextProvider = (props)=>{
             alert("Please Login First!");
         }
     };
+    const clearCart = async ()=>{
+        const result = await checkTokens();
+        if(result === true) {
+            try {
+                const response = await fetch(`${backendURL}/Cart/removeAll`, {
+                    method: 'PUT',
+                    headers: {
+                        Accept: 'application/form-data',
+                        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+                        'refresh-token': `${localStorage.getItem('refresh-token')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({})
+                });
     
+                if (!response.ok) {
+                    throw new Error('Failed to remove item from cart');
+                }
+                setCartItems([]);
+            }
+            catch(error) {
+                console.error('Error while clearing the cart:', error);
+            }
+        }
+    }
     const removeFromCart = async (itemId, price) => {
         const result = await checkTokens();
         if (result === true) {
@@ -173,7 +197,7 @@ const ShopContextProvider = (props)=>{
         return totalItem;
     }
 
-    const contextValue = {getTotalCartItems,getTotalCartAmount,cartItems,setCartItems,addToCart,removeFromCart,getQuantity,checkTokens,menu,setMenu};
+    const contextValue = {getTotalCartItems,getTotalCartAmount,cartItems,setCartItems,addToCart,clearCart,removeFromCart,getQuantity,checkTokens,menu,setMenu};
 
     return (
         <ShopContext.Provider value={contextValue} >

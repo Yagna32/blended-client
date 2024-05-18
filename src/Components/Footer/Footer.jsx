@@ -4,7 +4,7 @@ import footer_logo from '../Assets/logo-b.png'
 import github_icon from '../Assets/icons8-github-48.png'
 import email_icon from '../Assets/icons8-email-48.png'
 import linkedin_icon from '../Assets/icons8-linkedin-48.png'
-
+import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <div className='footer'>
@@ -13,11 +13,11 @@ const Footer = () => {
             <p>BLENDED</p>
         </div>
         <ul className="footer-links">
-            <li>Company</li>
-            <li>Products</li>
-            <li>Offices</li>
-            <li>About</li>
-            <li>Contact</li>
+            <li><Link to='/News'>News</Link></li>
+            <li><Link to='/'>Products</Link></li>
+            <li><Link to='/offices'>Office</Link></li>
+            <li><Link to='/aboutus'>About Us</Link></li>
+            <li><Link to='/contactus'>Contact Us</Link></li>
         </ul>
         <div className="footer-socials-icon">
             <div className="footer-icon-container">
