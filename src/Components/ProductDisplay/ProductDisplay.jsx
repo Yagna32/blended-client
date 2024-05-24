@@ -4,12 +4,10 @@ import star_icon from '../Assets/star_icon.png'
 import star_dull_icon from '../Assets/star_dull_icon.png'
 import { ShopContext } from '../../Context/ShopContext'
 import { ShopProductsContext } from '../../Context/ShopProductsContext'
-import { OrderContext } from '../../Context/OrderContext'
 
 
 const ProductDisplay = (props) => {
     const {addToCart,checkTokens} = useContext(ShopContext);
-    const {orders} = useContext(OrderContext);
     const {productid} = props;
     const {products,newCollection,popularProducts} = useContext(ShopProductsContext)
     console.log(productid + " id product choosed")
