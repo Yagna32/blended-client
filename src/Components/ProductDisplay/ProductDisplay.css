@@ -87,13 +87,31 @@
     border: #d0d0d0 solid 1px;
 }
 
-.productdisplay-right button{
+.productdisplay-addtocart{
     padding: 20px 40px;
-    width: 200px;
+    width: 190px;
     font-size: 16px;
     font-weight: 600;
     color: white;
     background: #ff4141;
+    margin-bottom: 40px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+.productdisplay-right-size button {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    margin: 4px;
+}
+.productdisplay-right-size button:hover{
+    transform: scale(1.1);
+}
+.productdisplay-addreview{
+    padding: 20px 40px;
+    width: 190px;
+    font-size: 16px;
+    font-weight: 600;
+    background: #dfdfdf;
     margin-bottom: 40px;
     border: none;
     outline: none;

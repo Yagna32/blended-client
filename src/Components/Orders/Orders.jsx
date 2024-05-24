@@ -1,14 +1,14 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ShopContext } from '../../Context/ShopContext';
+import { OrderContext } from '../../Context/OrderContext';
 
 const Orders = () => {
     const { checkTokens } = useContext(ShopContext);
-    const [orders, setOrders] = useState([]);
+    const {orders,setOrders} = useContext(OrderContext)
     const backendURL = process.env.REACT_APP_BACKEND_URL;
 
     const formatDate = (dateString)=>{
         const date = new Date(dateString);
-    
         // Extract date components
         const day = date.getDate();
         const month = date.toLocaleString('default', { month: 'short' });
