@@ -5,14 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ShopContextProvider from './Context/ShopContext';
 import ShopProductsContextProvider from './Context/ShopProductsContext';
+import OrderContextProvider from './Context/OrderContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <OrderContextProvider>
   <ShopContextProvider>
     <ShopProductsContextProvider>
       <App />
     </ShopProductsContextProvider>
   </ShopContextProvider>
+  </OrderContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
