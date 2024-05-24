@@ -29,24 +29,33 @@ const CartItems = () => {
         const stripe = await loadStripe("pk_test_51OnentSCzwG2wuTc2kQvTGvLnptEk7Bfo2MruuwDH9acsYjHm71Mr3VhNyfBegWapAIRUAyPXm3kkluGkjkvYRdZ00k6I8SEKN")
         const tokensValid = await ctxValue.checkTokens();
             if (tokensValid) {
-                const paymentResponse = await fetch(`${backendURL}/payment/create-checkout-session`, {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/form-data',
-                        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
-                        'refresh-token': `${localStorage.getItem('refresh-token')}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formatCart())
-                });
-                const paymentSession = await paymentResponse.json();
-                
-                const result = await stripe.redirectToCheckout({
-                    sessionId: paymentSession.id
-                })
-                if(result.error) console.log(result.error)
-            }
-    }
+                console.log(ctxValue.cartItems.length)
+                if(ctxValue.cartItems.length === 0 ) {
+                    alert("Add some items in cart")
+                }
+                else {
+                    const paymentResponse = await fetch(`${backendURL}/payment/create-checkout-session`, {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/form-data',
+                            Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+                            'refresh-token': `${localStorage.getItem('refresh-token')}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formatCart())
+                    });
+                    const paymentSession = await paymentResponse.json();
+                    
+                    const result = await stripe.redirectToCheckout({
+                        sessionId: paymentSession.id
+                    })
+                    if(result.error){ console.log(result.error)}
+                    else {
+                        console.log("payment Successfull")
+                    }
+                }
+        }
+                }
   return (
     <div className='cartitems'>
         <div className="cartitems-format-main">
