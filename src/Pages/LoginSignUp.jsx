@@ -3,6 +3,8 @@ import './css/LoginSignup.css'
 export const LoginSignUp = () => {
 
   const [state,setState] = useState("Login");
+  const [agreeTerms,setAgreeTerms] = useState(false);
+
   const [formData,setFormData] = useState({
     username:"",
     email:"",
@@ -12,7 +14,9 @@ export const LoginSignUp = () => {
   const changeHandler = (e) => {
     setFormData({...formData,[e.target.name]:e.target.value})
   }
-
+  const agreeTermsChangeHandler = (e) => {
+    setAgreeTerms(e.target.checked);
+  }
   const login = async() =>{
     let responseData;
 
@@ -39,7 +43,10 @@ export const LoginSignUp = () => {
 
   const signup = async()=>{
     let responseData;
-
+    if(!agreeTerms) {
+      alert('aggre on terms and conditions');
+      return;
+    }
     await fetch(`${backendURL}/signup`,{
       method: 'POST',
       headers:{
@@ -75,13 +82,14 @@ export const LoginSignUp = () => {
         </div>
         <button onClick={()=>{state==="Login"?login():signup()}}>Continue</button>
         {state==="Sign Up"
-        ?<p className='loginsignup-login'>Already have an account? <span onClick={()=>{setState("Login")}}>Login</span></p>
-        :<p className='loginsignup-login'>Create an Account? <span onClick={()=>{setState("Sign Up")}}>Click here</span></p>
-        }
+        ?<><p className='loginsignup-login'>Already have an account? <span onClick={()=>{setState("Login")}}>Login</span></p>
         <div className="loginsignup-agree">
-          <input type="checkbox" />
+          <input type="checkbox" onChange={agreeTermsChangeHandler} value={agreeTerms} required/>
           <p>By continuing, i agree to the terms of use & privacy policy.</p>
         </div>
+        </>
+        :<p className='loginsignup-login'>Create an Account? <span onClick={()=>{setState("Sign Up")}}>Click here</span></p>
+        }
       </div>
     </div>
   )

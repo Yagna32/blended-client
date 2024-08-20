@@ -22,15 +22,15 @@ const NewsLetter = () => {
             alert("Check your email to confirm")
         }
     }
+    else {
+        alert("Please login first")
+    }
 };
   return (
     <div className='newsletter'>
         <h1>Get Exclusive Offers to your Email</h1>
         <p>Subscribe to our newsletter and stay updated</p>
-        <div>
-            <input type="email" placeholder='Your Email ID'/>
             <button onClick={mailHandler}>Subscribe</button>
-        </div>
     </div>
   )
 }
